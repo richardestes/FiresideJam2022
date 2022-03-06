@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpawnPlanets : MonoBehaviour
 {
     private Vector2 screenBounds;
+
+    [SerializeField]
     private GameObject planetPrefab;
 
     [Range(1,10)]

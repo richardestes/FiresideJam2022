@@ -439,6 +439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 464913245796163829, guid: c06a88035fae726418abb8ce6d503003, type: 3}
   respawnTime: 1
+  spawnDistance: 1.5
   asteroidSprites:
   - {fileID: 21300000, guid: ad8a5ab0a9376214a8832436bab46c35, type: 3}
   - {fileID: 21300000, guid: 14cfb7204b277af4fa6933509f502ba4, type: 3}
@@ -448,7 +449,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9676f7d911256584d95278b9c4595a68, type: 3}
   - {fileID: 21300000, guid: d18ee6288ac04954782b231b3c3f4075, type: 3}
   - {fileID: 21300000, guid: 76e31c06f9449974a98958d51e428b6a, type: 3}
-  spawnDistance: 1.5
 --- !u!1 &297357299
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +717,7 @@ GameObject:
   - component: {fileID: 784521879}
   - component: {fileID: 784521881}
   - component: {fileID: 784521882}
+  - component: {fileID: 784521883}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Spaceship
@@ -783,7 +784,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784521878}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.64, y: -0.23000002, z: 0}
+  m_LocalPosition: {x: -6.64, y: 0.1500001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -828,6 +829,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  speed: 2
+--- !u!50 &784521883
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784521878}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 1
 --- !u!1 &814857939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,13 +1321,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetPrefab: {fileID: 5063244664274214362, guid: 33afd3143a3d97a46adbd7fbb794007c, type: 3}
   respawnTime: 5
+  spawnDistance: 2.5
   planetSprites:
   - {fileID: 21300000, guid: 41e133d560544f548ae48a821a6ffc16, type: 3}
   - {fileID: 21300000, guid: d799376614643c044bf0bb3dd393f08a, type: 3}
   - {fileID: 21300000, guid: 5cc9cc6685370c047bee519c5dd6d9e8, type: 3}
   - {fileID: 21300000, guid: 3d0eb627c38169247a40f656076568dc, type: 3}
   - {fileID: 21300000, guid: 8e106cba905120841b00e4862d6c6a6f, type: 3}
-  spawnDistance: 2.5
 --- !u!4 &1234288825
 Transform:
   m_ObjectHideFlags: 0

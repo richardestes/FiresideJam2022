@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpawnAsteroids : MonoBehaviour
 {
     private Vector2 screenBounds;
+
+    [SerializeField]
     private GameObject asteroidPrefab;
 
     [Range(1,10)]
