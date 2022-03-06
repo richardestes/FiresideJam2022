@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class SpawnAsteroids : MonoBehaviour
 {
-    public GameObject asteroidPrefab;
+    private Vector2 screenBounds;
+    private GameObject asteroidPrefab;
 
     [Range(1,10)]
     public float respawnTime = 1;
-
-    public List<Sprite> asteroidSprites;
-
     [Range(1,4)]
     public float spawnDistance = 2f;
-
-    private Vector2 screenBounds;
+    public List<Sprite> asteroidSprites;
 
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        StartCoroutine(asteroidWave());
+        StartCoroutine(AsteroidWave());
     }
-    void spawnAsteroid()
+    void SpawnAsteroid()
     {
         GameObject asteroidObj = Instantiate(asteroidPrefab);
         Asteroid asteroid = asteroidObj.GetComponent<Asteroid>();
@@ -35,12 +32,12 @@ public class SpawnAsteroids : MonoBehaviour
         asteroid.SetDamage(sizeDamageRatio);
     }
     
-    IEnumerator asteroidWave()
+    IEnumerator AsteroidWave()
     {
         while (true)
         {
             yield return new WaitForSeconds(respawnTime);
-            spawnAsteroid();
+            SpawnAsteroid();
         }
     }
 

@@ -6,10 +6,10 @@ public class Crosshair : MonoBehaviour
     private CircleCollider2D col;
     private bool enemyInRadius;
     private GameObject enemy;
-
     private Shake shake;
+    private UIManager manager;
 
-    public int ammo = 20;
+    public int ammo = 100;
 
     private void Awake()
     {
@@ -18,7 +18,8 @@ public class Crosshair : MonoBehaviour
 
     private void Start()
     {
-        shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
+        if (!shake) shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
+        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>();
     }
 
     void Update()
@@ -58,9 +59,11 @@ public class Crosshair : MonoBehaviour
 
     public void Shoot()
     {
+        int points = enemy.GetComponent<Asteroid>().damage;
         Destroy(enemy);
         shake.CamShake();
         ammo -= 1;
+        manager.IncreaseScore(points);
     }
 
 }

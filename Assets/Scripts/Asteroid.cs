@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    public float speed = 10f;
-    public int damage = 10;
-    public Spaceship spaceship;
+    private Spaceship spaceship;
     private Rigidbody2D rb;
     private Vector2 screenBounds;
+
+    public float speed = 10f;
+    public int damage = 10;
 
     private void Start()
     {
@@ -48,7 +49,5 @@ public class Asteroid : MonoBehaviour
             damage = 20;
         }
         else damage = 10;
-
-        print(damage);
     }
 }

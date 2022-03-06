@@ -4,25 +4,22 @@ using UnityEngine;
 
 public class SpawnPlanets : MonoBehaviour
 {
-    public GameObject planetPrefab;
+    private Vector2 screenBounds;
+    private GameObject planetPrefab;
 
     [Range(1,10)]
     public float respawnTime = 1;
-
-    public List<Sprite> planetSprites;
-
     [Range(1,4)]
     public float spawnDistance = 2f;
-
-    private Vector2 screenBounds;
+    public List<Sprite> planetSprites;
 
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        StartCoroutine(planetWave());
+        StartCoroutine(PlanetWave());
     }
 
-    void spawnPlanet()
+    void SpawnPlanet()
     {
         GameObject planetObj = Instantiate(planetPrefab);
         Planet planet = planetObj.GetComponent<Planet>();
@@ -33,12 +30,12 @@ public class SpawnPlanets : MonoBehaviour
         planet.transform.position = new Vector2(screenBounds.x * spawnDistance, Random.Range(-screenBounds.y, screenBounds.y));
     }
 
-    IEnumerator planetWave()
+    IEnumerator PlanetWave()
     {
         while (true)
         {
             yield return new WaitForSeconds(respawnTime);
-            spawnPlanet();
+            SpawnPlanet();
         }
     }
 

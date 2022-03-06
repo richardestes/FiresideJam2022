@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Planet : MonoBehaviour
 {
-    [Range(0.1f,1f)]
-    public float speed = 0.1f;
     private Rigidbody2D rb;
     private Vector2 screenBounds;
+
+    [Range(0.1f,1f)]
+    public float speed = 0.1f;
 
     private void Start()
     {
