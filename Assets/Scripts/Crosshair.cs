@@ -9,6 +9,8 @@ public class Crosshair : MonoBehaviour
 
     private Shake shake;
 
+    public int ammo = 20;
+
     private void Awake()
     {
         Cursor.visible = false; // hide default cursor
@@ -29,10 +31,9 @@ public class Crosshair : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (enemyInRadius)
+            if (enemyInRadius && ammo > 0)
             {
-                Destroy(enemy);
-                shake.CamShake();
+                Shoot();
             }
         }
     }
@@ -53,6 +54,13 @@ public class Crosshair : MonoBehaviour
             enemyInRadius = false;
             enemy = null;
         }
+    }
+
+    public void Shoot()
+    {
+        Destroy(enemy);
+        shake.CamShake();
+        ammo -= 1;
     }
 
 }

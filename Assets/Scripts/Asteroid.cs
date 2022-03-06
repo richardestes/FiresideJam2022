@@ -5,6 +5,8 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour
 {
     public float speed = 10f;
+    public int damage = 10;
+    public Spaceship spaceship;
     private Rigidbody2D rb;
     private Vector2 screenBounds;
 
@@ -13,6 +15,7 @@ public class Asteroid : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(-speed, 0);
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
     }
 
     private void Update()
@@ -25,8 +28,27 @@ public class Asteroid : MonoBehaviour
     {
         if (collision.gameObject.name == "Spaceship")
         {
-            // TODO: Apply damage to player
+            spaceship.TakeDamage(damage);
             Destroy(gameObject);
         }
+    }
+
+    public void SetDamage(float scale)
+    {
+        if (scale >= 1 && scale <= 10)
+        {
+            damage = 10;
+        }
+        else if (scale >= 10 && scale <= 20)
+        {
+            damage = 15;
+        }
+        else if (scale >= 20 && scale <= 25)
+        {
+            damage = 20;
+        }
+        else damage = 10;
+
+        print(damage);
     }
 }
