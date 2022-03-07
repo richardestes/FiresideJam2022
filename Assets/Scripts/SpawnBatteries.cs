@@ -28,12 +28,11 @@ public class SpawnBatteries : MonoBehaviour
     private void Update()
     {
         score = manager.score;
-        print(score);
     }
 
     void SpawnBattery()
     {
-        print("Spawning batter");
+        print("Spawning battery");
         GameObject batteryObj = Instantiate(batteryPrefab);
         Battery battery = batteryObj.GetComponent<Battery>();
         battery.speed = Random.Range(0.1f, 1f);
@@ -45,7 +44,7 @@ public class SpawnBatteries : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(respawnTime);
-            if (score > 200 ) SpawnBattery();
+            if (score > 200) SpawnBattery();
         }
     }
 

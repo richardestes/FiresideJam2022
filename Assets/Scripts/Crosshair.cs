@@ -9,6 +9,9 @@ public class Crosshair : MonoBehaviour
     private UIManager manager;
     private bool enemy;
     private Spaceship spaceship;
+    private Vector2 mouseCursorPosition;
+
+    public GameObject particles;
 
     public int ammo = 100;
 
@@ -31,7 +34,7 @@ public class Crosshair : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
-        Vector2 mouseCursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseCursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = mouseCursorPosition;
     }
 
@@ -74,11 +77,25 @@ public class Crosshair : MonoBehaviour
     {
         if (enemy)
         {
-            int points = target.GetComponent<Asteroid>().damage;    
+            Asteroid asteroid = target.GetComponent<Asteroid>();
+            CreateParticles();
+            int points = asteroid.damage;
             manager.IncreaseScore(points);
         }
         if (target) Destroy(target);
         shake.CamShake();
         ammo -= 1;
+    }
+
+    void CreateParticles()
+    {
+        particles = Instantiate(particles, mouseCursorPosition, Quaternion.identity);
+        // Play particles
+        particles.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        particles.GetComponent<ParticleSystem>().Play();
+        if (particles.GetComponent<ParticleSystem>().isStopped)
+        {
+            Destroy(particles);
+        }
     }
 }

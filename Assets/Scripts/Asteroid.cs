@@ -21,8 +21,8 @@ public class Asteroid : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.x < screenBounds.x * - 1.5f) // off-screen
-            Destroy(gameObject);        
+        if (transform.position.x < screenBounds.x * -1.5f) // off-screen
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -1287,6 +1287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 0}
+  particles: {fileID: 642349401538791426, guid: fc7709a986992492389536a26c7e90b3, type: 3}
   ammo: 100
 --- !u!4 &1040531932
 Transform:
