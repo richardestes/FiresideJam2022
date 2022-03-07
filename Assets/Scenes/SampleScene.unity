@@ -829,6 +829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c8b9a82f1408e45b7363db68b6b4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poweredDown: {fileID: 21300000, guid: 66b2ab8c61ffdea4fa6d2e8f046d564f, type: 3}
+  dead: 0
   health: 100
   speed: 2
 --- !u!50 &784521883

@@ -4,11 +4,11 @@ public class Crosshair : MonoBehaviour
 {
     [SerializeField]
     private CircleCollider2D col;
-    private bool targetInRadius;
     private GameObject target;
     private Shake shake;
     private UIManager manager;
     private bool enemy;
+    private Spaceship spaceship;
 
     public int ammo = 100;
 
@@ -21,16 +21,23 @@ public class Crosshair : MonoBehaviour
     {
         if (!shake) shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
         if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>();
+        if (!spaceship) spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
     }
 
     void Update()
     {
+        if (spaceship.dead)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
         Vector2 mouseCursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = mouseCursorPosition;
     }
 
     private void LateUpdate()
     {
+        if (spaceship.dead) return;
         if (Input.GetMouseButtonDown(0))
         {
             if (ammo > 0)
@@ -46,13 +53,11 @@ public class Crosshair : MonoBehaviour
         {
             enemy = true;
             target = collision.gameObject;
-            targetInRadius = true;
         }
         else if (collision.gameObject.layer == 7)
         {
             enemy = false;
             target = collision.gameObject;
-            targetInRadius = true;
         }
     }
 
@@ -60,11 +65,9 @@ public class Crosshair : MonoBehaviour
     {
         if (collision.gameObject.layer == 6 || collision.gameObject.layer == 7)
         {
-            targetInRadius = false;
             target = null;
             enemy = false;
         }
-
     }
 
     public void Shoot()
@@ -78,5 +81,4 @@ public class Crosshair : MonoBehaviour
         shake.CamShake();
         ammo -= 1;
     }
-
 }
