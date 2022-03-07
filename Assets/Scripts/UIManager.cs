@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    private int score = 0;
+    public int score = 0;
 
     [SerializeField]
     private Spaceship spaceship;

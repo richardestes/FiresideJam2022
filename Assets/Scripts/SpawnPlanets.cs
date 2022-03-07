@@ -29,7 +29,7 @@ public class SpawnPlanets : MonoBehaviour
         planet.speed = Random.Range(0.1f, 1f);
         float randomScale = Random.Range(1f, 5f);
         planet.transform.localScale = new Vector3(randomScale, randomScale, 10);
-        planet.transform.position = new Vector2(screenBounds.x * spawnDistance, Random.Range(-screenBounds.y, screenBounds.y));
+        planet.transform.position = new Vector3(screenBounds.x * spawnDistance, Random.Range(-screenBounds.y, screenBounds.y), 5);
     }
 
     IEnumerator PlanetWave()

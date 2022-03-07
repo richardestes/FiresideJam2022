@@ -28,7 +28,7 @@ public class SpawnAsteroids : MonoBehaviour
         asteroid.speed = Random.Range(1, 10);
         float randomScale = Random.Range(1.5f, 5f);
         asteroid.transform.localScale = new Vector3(randomScale, randomScale, asteroid.transform.position.z);
-        asteroid.transform.position = new Vector2(screenBounds.x * spawnDistance, Random.Range(-screenBounds.y, screenBounds.y));
+        asteroid.transform.position = new Vector3(screenBounds.x * spawnDistance, Random.Range(-screenBounds.y, screenBounds.y),4);
         Vector2 asteroidSize = asteroidObj.GetComponent<SpriteRenderer>().bounds.size;
         float sizeDamageRatio = asteroidSize.x * 10;
         asteroid.SetDamage(sizeDamageRatio);

@@ -4,10 +4,11 @@ public class Crosshair : MonoBehaviour
 {
     [SerializeField]
     private CircleCollider2D col;
-    private bool enemyInRadius;
-    private GameObject enemy;
+    private bool targetInRadius;
+    private GameObject target;
     private Shake shake;
     private UIManager manager;
+    private bool enemy;
 
     public int ammo = 100;
 
@@ -32,7 +33,7 @@ public class Crosshair : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (enemyInRadius && ammo > 0)
+            if (ammo > 0)
             {
                 Shoot();
             }
@@ -43,27 +44,39 @@ public class Crosshair : MonoBehaviour
     {
         if (collision.gameObject.layer == 6)
         {
-            enemy = collision.gameObject;
-            enemyInRadius = true;
+            enemy = true;
+            target = collision.gameObject;
+            targetInRadius = true;
+        }
+        else if (collision.gameObject.layer == 7)
+        {
+            enemy = false;
+            target = collision.gameObject;
+            targetInRadius = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 6 || collision.gameObject.layer == 7)
         {
-            enemyInRadius = false;
-            enemy = null;
+            targetInRadius = false;
+            target = null;
+            enemy = false;
         }
+
     }
 
     public void Shoot()
     {
-        int points = enemy.GetComponent<Asteroid>().damage;
-        Destroy(enemy);
+        if (enemy)
+        {
+            int points = target.GetComponent<Asteroid>().damage;    
+            manager.IncreaseScore(points);
+        }
+        if (target) Destroy(target);
         shake.CamShake();
         ammo -= 1;
-        manager.IncreaseScore(points);
     }
 
 }
