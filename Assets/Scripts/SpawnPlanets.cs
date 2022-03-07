@@ -9,9 +9,9 @@ public class SpawnPlanets : MonoBehaviour
     [SerializeField]
     private GameObject planetPrefab;
 
-    [Range(1,10)]
+    [Range(1, 10)]
     public float respawnTime = 1;
-    [Range(1,4)]
+    [Range(1, 4)]
     public float spawnDistance = 2f;
     public List<Sprite> planetSprites;
 
@@ -27,7 +27,7 @@ public class SpawnPlanets : MonoBehaviour
         Planet planet = planetObj.GetComponent<Planet>();
         planetObj.GetComponent<SpriteRenderer>().sprite = planetSprites[Random.Range(0, planetSprites.Count)];
         planet.speed = Random.Range(0.1f, 1f);
-        float randomScale = Random.Range(1f, 5f);
+        float randomScale = Random.Range(1.5f, 5f);
         planet.transform.localScale = new Vector3(randomScale, randomScale, 10);
         planet.transform.position = new Vector3(screenBounds.x * spawnDistance, Random.Range(-screenBounds.y, screenBounds.y), 5);
     }

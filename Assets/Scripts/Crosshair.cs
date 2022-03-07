@@ -10,9 +10,9 @@ public class Crosshair : MonoBehaviour
     private bool enemy;
     private Spaceship spaceship;
     private Vector2 mouseCursorPosition;
+    private ParticleSystem _particleRef;
 
-    public GameObject particles;
-
+    public ParticleSystem particles;
     public int ammo = 100;
 
     private void Awake()
@@ -25,6 +25,7 @@ public class Crosshair : MonoBehaviour
         if (!shake) shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
         if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>();
         if (!spaceship) spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
+        _particleRef = particles;
     }
 
     void Update()
@@ -36,6 +37,7 @@ public class Crosshair : MonoBehaviour
         }
         mouseCursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = mouseCursorPosition;
+
     }
 
     private void LateUpdate()
@@ -78,24 +80,23 @@ public class Crosshair : MonoBehaviour
         if (enemy)
         {
             Asteroid asteroid = target.GetComponent<Asteroid>();
-            CreateParticles();
             int points = asteroid.damage;
             manager.IncreaseScore(points);
         }
-        if (target) Destroy(target);
+
+        if (target)
+        {
+            CreateParticles();
+            Destroy(target);
+        }
+
         shake.CamShake();
         ammo -= 1;
     }
 
     void CreateParticles()
     {
-        particles = Instantiate(particles, mouseCursorPosition, Quaternion.identity);
-        // Play particles
+        particles = Instantiate(_particleRef, mouseCursorPosition, Quaternion.identity);
         particles.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        particles.GetComponent<ParticleSystem>().Play();
-        if (particles.GetComponent<ParticleSystem>().isStopped)
-        {
-            Destroy(particles);
-        }
     }
 }
