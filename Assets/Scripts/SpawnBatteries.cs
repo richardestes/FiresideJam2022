@@ -11,11 +11,9 @@ public class SpawnBatteries : MonoBehaviour
 
     private UIManager manager;
 
-    private int score;
-
-    [Range(1, 10)]
+    [Range(1, 360)]
     public float respawnTime = 1;
-    [Range(1, 4)]
+    [Range(1f, 10f)]
     public float spawnDistance = 2f;
 
     void Start()
@@ -23,11 +21,6 @@ public class SpawnBatteries : MonoBehaviour
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>();
         StartCoroutine(BatteryWave());
-    }
-
-    private void Update()
-    {
-        score = manager.score;
     }
 
     void SpawnBattery()
@@ -44,7 +37,18 @@ public class SpawnBatteries : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(respawnTime);
-            if (score > 200) SpawnBattery();
+            respawnTime = Mathf.Clamp(respawnTime + 5f, 1, 360); // increase respawn time for skill curve
+            SpawnBattery();
+
+            // If you want to wait until a certain score has been obtained in respawn window,
+            // this is the execution order
+            // oldScore = score;
+            // yield return new WaitForSeconds(respawnTime);
+            // if (score > oldScore + 100) // Did player get certain score in respawn window
+            // {
+            //      DO SHIT
+            // }
+
         }
     }
 

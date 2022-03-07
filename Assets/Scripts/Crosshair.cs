@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Crosshair : MonoBehaviour
@@ -11,6 +13,7 @@ public class Crosshair : MonoBehaviour
     private Spaceship spaceship;
     private Vector2 mouseCursorPosition;
     private ParticleSystem _particleRef;
+    private ParticleSystem ps;
 
     public ParticleSystem particles;
     public int ammo = 100;
@@ -25,7 +28,7 @@ public class Crosshair : MonoBehaviour
         if (!shake) shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
         if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>();
         if (!spaceship) spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
-        _particleRef = particles;
+        _particleRef = particles;  // DO NOT DELETE
     }
 
     void Update()
@@ -98,5 +101,15 @@ public class Crosshair : MonoBehaviour
     {
         particles = Instantiate(_particleRef, mouseCursorPosition, Quaternion.identity);
         particles.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        ps = particles.GetComponent<ParticleSystem>();
+        ps.Stop();
+        RandomizeParticleDuration();
+        ps.Play();
+    }
+
+    void RandomizeParticleDuration()
+    {
+        var main = ps.main;
+        main.duration = Random.Range(0.25f, 0.5f);
     }
 }
