@@ -470,7 +470,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -491,6 +491,8 @@ RectTransform:
   - {fileID: 1264098926}
   - {fileID: 814857940}
   - {fileID: 1275826490}
+  - {fileID: 832814507}
+  - {fileID: 428720554}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -499,6 +501,142 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &428720553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 428720554}
+  - component: {fileID: 428720556}
+  - component: {fileID: 428720555}
+  m_Layer: 5
+  m_Name: SongArtist
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &428720554
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428720553}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 297357303}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 97, y: -158}
+  m_SizeDelta: {x: 586.6704, y: 26.9826}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &428720555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428720553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Artist
+
+'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294046193
+  m_fontColor: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 16
+  m_fontSizeBase: 16
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 4
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &428720556
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428720553}
+  m_CullTransparentMesh: 1
 --- !u!1 &433076053
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,6 +895,140 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814857939}
+  m_CullTransparentMesh: 1
+--- !u!1 &832814506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 832814507}
+  - component: {fileID: 832814509}
+  - component: {fileID: 832814508}
+  m_Layer: 5
+  m_Name: SongTitle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &832814507
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832814506}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 297357303}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 97, y: -129.00832}
+  m_SizeDelta: {x: 586.6704, y: 27.9834}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &832814508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832814506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Title
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278255612
+  m_fontColor: {r: 0.98765564, g: 1, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 20
+  m_fontSizeBase: 20
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 4
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &832814509
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832814506}
   m_CullTransparentMesh: 1
 --- !u!1 &850387260
 GameObject:
@@ -1366,7 +1638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5439604757666016826, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
       propertyPath: Mute
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5439604757666016826, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
       propertyPath: m_PlayOnAwake
@@ -1417,9 +1689,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
+      propertyPath: songTitle
+      value: 
+      objectReference: {fileID: 832814508}
+    - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
+      propertyPath: songArtist
+      value: 
+      objectReference: {fileID: 428720555}
+    - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
+      propertyPath: bossSongs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
       propertyPath: mainSongs.Array.size
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
+      propertyPath: bossSongs.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 79ca4df6313cb4e8cb35bd9e0273c113, type: 3}
+    - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
+      propertyPath: bossSongs.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 953fc7b404c124d0584da8e8dedfe3de, type: 3}
     - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
       propertyPath: mainSongs.Array.data[0]
       value: 
@@ -1470,7 +1762,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 6c5d3db194a065a41ac4fa8958728557, type: 3}
     - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
       propertyPath: leaderboardSongs.Array.size
-      value: 7
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
       propertyPath: leaderboardSongs.Array.data[0]
@@ -1479,27 +1771,55 @@ PrefabInstance:
     - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
       propertyPath: leaderboardSongs.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: 9ce9a5fb5975b4b4e826bed680b2a245, type: 3}
+      objectReference: {fileID: 8300000, guid: 308315072bd6c484cbbcaa5c66229bc7, type: 3}
     - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
       propertyPath: leaderboardSongs.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: f8c18005d26356d4c8cb4cecbc279fd6, type: 3}
+      objectReference: {fileID: 8300000, guid: 5c87a097842f84bfeb80aedc17ba1adb, type: 3}
     - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
       propertyPath: leaderboardSongs.Array.data[3]
       value: 
-      objectReference: {fileID: 8300000, guid: 162124fe2dff8954597f166e458fe737, type: 3}
+      objectReference: {fileID: 8300000, guid: 9ce9a5fb5975b4b4e826bed680b2a245, type: 3}
     - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
       propertyPath: leaderboardSongs.Array.data[4]
       value: 
-      objectReference: {fileID: 8300000, guid: 53cb7bdaf1c3ff34b94bdc5172619920, type: 3}
+      objectReference: {fileID: 8300000, guid: f24651731ca284c87880068493091aa3, type: 3}
     - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
       propertyPath: leaderboardSongs.Array.data[5]
       value: 
-      objectReference: {fileID: 8300000, guid: b84533d34bfe4a14e9f486296762a202, type: 3}
+      objectReference: {fileID: 8300000, guid: c2f0fd8dbc993404c9fc175315a981a0, type: 3}
     - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
       propertyPath: leaderboardSongs.Array.data[6]
       value: 
+      objectReference: {fileID: 8300000, guid: f8c18005d26356d4c8cb4cecbc279fd6, type: 3}
+    - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
+      propertyPath: leaderboardSongs.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 162124fe2dff8954597f166e458fe737, type: 3}
+    - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
+      propertyPath: leaderboardSongs.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 53cb7bdaf1c3ff34b94bdc5172619920, type: 3}
+    - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
+      propertyPath: leaderboardSongs.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: 486f44e8d39a147d39a1d435117f8965, type: 3}
+    - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
+      propertyPath: leaderboardSongs.Array.data[10]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c5f87d20e0d243c5bbc3551b218f82a, type: 3}
+    - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
+      propertyPath: leaderboardSongs.Array.data[11]
+      value: 
+      objectReference: {fileID: 8300000, guid: b84533d34bfe4a14e9f486296762a202, type: 3}
+    - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
+      propertyPath: leaderboardSongs.Array.data[12]
+      value: 
       objectReference: {fileID: 8300000, guid: ad04f4b374897c447b5ecce4fc0b677e, type: 3}
+    - target: {fileID: 6200984824233415148, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
+      propertyPath: leaderboardSongs.Array.data[13]
+      value: 
+      objectReference: {fileID: 8300000, guid: d1e1c40af78a04195ac4cde40d447a45, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12e177ae2f6bc194e888b69d633d481f, type: 3}
 --- !u!1001 &5761479476480999892
