@@ -9,7 +9,7 @@ public class SpawnBatteries : MonoBehaviour
     [SerializeField]
     private GameObject batteryPrefab;
 
-    private UIManager manager;
+    private GameManager manager;
 
     [Range(1, 360)]
     public float respawnTime = 1;
@@ -19,7 +19,7 @@ public class SpawnBatteries : MonoBehaviour
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>();
+        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         StartCoroutine(BatteryWave());
     }
 

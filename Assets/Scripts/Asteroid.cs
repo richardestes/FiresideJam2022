@@ -9,7 +9,7 @@ public class Asteroid : MonoBehaviour
     private Vector2 screenBounds;
 
     public float speed = 10f;
-    public int damage = 10;
+    public float damage = 10f;
 
     private void Start()
     {
@@ -29,7 +29,8 @@ public class Asteroid : MonoBehaviour
     {
         if (collision.gameObject.name == "Spaceship")
         {
-            spaceship.TakeDamage(damage);
+            int damageInt = Mathf.RoundToInt(damage);
+            spaceship.TakeDamage(damageInt);
             Destroy(gameObject);
         }
     }

@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6484832215411440470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6484832215411440457}
+  - component: {fileID: 6484832215411440456}
+  m_Layer: 0
+  m_Name: Asteroid Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6484832215411440457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6484832215411440470}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6484832215411440456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6484832215411440470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e46697b820cb543b2f918890cc6fb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidPrefab: {fileID: 464913245796163829, guid: c06a88035fae726418abb8ce6d503003, type: 3}
+  respawnTime: 1
+  spawnDistance: 1.5
+  asteroidSprites:
+  - {fileID: 21300000, guid: ad8a5ab0a9376214a8832436bab46c35, type: 3}
+  - {fileID: 21300000, guid: 14cfb7204b277af4fa6933509f502ba4, type: 3}
+  - {fileID: 21300000, guid: 4d1c5bedfc56cdd4ea1421f888370764, type: 3}
+  - {fileID: 21300000, guid: a796a1e5cd4c1e94492251b655af11d9, type: 3}
+  - {fileID: 21300000, guid: 6c998b047715237478a2c586806bbf9d, type: 3}
+  - {fileID: 21300000, guid: 9676f7d911256584d95278b9c4595a68, type: 3}
+  - {fileID: 21300000, guid: d18ee6288ac04954782b231b3c3f4075, type: 3}
+  - {fileID: 21300000, guid: 76e31c06f9449974a98958d51e428b6a, type: 3}

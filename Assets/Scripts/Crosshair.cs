@@ -8,7 +8,7 @@ public class Crosshair : MonoBehaviour
     private CircleCollider2D col;
     private GameObject target;
     private Shake shake;
-    private UIManager manager;
+    private GameManager manager;
     private bool enemy;
     private Spaceship spaceship;
     private Vector2 mouseCursorPosition;
@@ -26,7 +26,7 @@ public class Crosshair : MonoBehaviour
     private void Start()
     {
         if (!shake) shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
-        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>();
+        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         if (!spaceship) spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
         _particleRef = particles;  // DO NOT DELETE
     }
@@ -83,7 +83,7 @@ public class Crosshair : MonoBehaviour
         if (enemy)
         {
             Asteroid asteroid = target.GetComponent<Asteroid>();
-            int points = asteroid.damage;
+            float points = asteroid.damage;
             manager.IncreaseScore(points);
         }
 
