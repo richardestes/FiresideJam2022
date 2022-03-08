@@ -15,7 +15,7 @@ public class MusicHandler : MonoBehaviour
 
     private void Start()
     {
-        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         int randomMainIndex = Random.Range(0, mainSongs.Count);
         mainSong = mainSongs[randomMainIndex];

@@ -1019,7 +1019,7 @@ GameObject:
   - component: {fileID: 1275826491}
   m_Layer: 5
   m_Name: ScoreText
-  m_TagString: Untagged
+  m_TagString: ScoreText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1172,6 +1172,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1427587966587061399, guid: bbd0854869375e24cbdd546bb68a1935, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 6670266637530091312}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbd0854869375e24cbdd546bb68a1935, type: 3}
 --- !u!1001 &1930833808806291347
@@ -1693,6 +1697,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce3d0d37af7f27344b39fa512cb619d9, type: 3}
+--- !u!114 &6670266637530091312 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6670266637563131023, guid: ce3d0d37af7f27344b39fa512cb619d9, type: 3}
+  m_PrefabInstance: {fileID: 6670266637530091311}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52f65f43ba6f9c3469a61b5d3b5993ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8648429734329296346
 PrefabInstance:
   m_ObjectHideFlags: 0

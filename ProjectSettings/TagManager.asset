@@ -8,6 +8,7 @@ TagManager:
   - Spaceship
   - GameManager
   - Crosshair
+  - ScoreText
   layers:
   - Default
   - TransparentFX

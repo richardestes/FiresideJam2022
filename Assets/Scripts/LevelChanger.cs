@@ -3,16 +3,22 @@ using UnityEngine.SceneManagement;
 
 public class LevelChanger : MonoBehaviour
 {
+    private GameManager manager;
+    private int levelToLoad;
+
     public Animator animator;
 
-    private int levelToLoad;
+    private void Start()
+    {
+        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
 
     private void Update()
     {
-        // TODO: Change this to change when player has died
-        if(Input.GetKeyDown(KeyCode.N))
+        if (manager.isDead)
         {
-            FadeToLevel(1);
+            print("Loading leaderboard scene.");
+            FadeToLevel(2);
         }
     }
 
