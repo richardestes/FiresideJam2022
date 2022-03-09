@@ -8,11 +8,11 @@ public class SpawnBatteries : MonoBehaviour
 
     [SerializeField]
     private GameObject batteryPrefab;
-
+    [SerializeField]
     private GameManager manager;
 
-    [Range(1, 360)]
-    public float respawnTime = 1;
+    [Range(1f, 360f)]
+    public float respawnTime = 1f;
     [Range(1f, 10f)]
     public float spawnDistance = 2f;
 
@@ -39,15 +39,6 @@ public class SpawnBatteries : MonoBehaviour
             yield return new WaitForSeconds(respawnTime);
             respawnTime = Mathf.Clamp(respawnTime + 5f, 1, 360); // increase respawn time for skill curve
             SpawnBattery();
-
-            // If you want to wait until a certain score has been obtained in respawn window,
-            // this is the execution order
-            // oldScore = score;
-            // yield return new WaitForSeconds(respawnTime);
-            // if (score > oldScore + 100) // Did player get certain score in respawn window
-            // {
-            //      DO SHIT
-            // }
 
         }
     }

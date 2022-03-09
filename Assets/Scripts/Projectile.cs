@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Battery : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     private Spaceship spaceship;
     private Rigidbody2D rb;
     private Vector2 screenBounds;
-    
+
     [Range(5f,20f)]
     public float speed = 10f;
-    public int healingPoints = 10;
+    public int damage = 15;
 
     private void Start()
     {
@@ -30,7 +28,7 @@ public class Battery : MonoBehaviour
     {
         if (collision.gameObject.name == "Spaceship")
         {
-            spaceship.Heal(healingPoints);
+            spaceship.TakeDamage(damage);
             Destroy(gameObject);
         }
     }

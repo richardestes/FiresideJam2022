@@ -9,6 +9,8 @@ TagManager:
   - GameManager
   - Crosshair
   - ScoreText
+  - Asteroid
+  - Pirate
   layers:
   - Default
   - TransparentFX

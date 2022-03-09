@@ -82,14 +82,25 @@ public class Crosshair : MonoBehaviour
     {
         if (enemy)
         {
-            Asteroid asteroid = target.GetComponent<Asteroid>();
-            float points = asteroid.damage;
+            float points = 0f;
+            if (target.tag == "Asteroid")
+            {
+                Asteroid asteroid = target.GetComponent<Asteroid>();
+                points = asteroid.damage;
+            }
+            else if (target.tag == "Pirate")
+            {
+                Pirate pirate = target.GetComponent<Pirate>();
+                points = pirate.damage;
+            }    
             manager.IncreaseScore(points);
         }
 
         if (target)
         {
-            CreateParticles();
+            if (target.tag == "Asteroid") CreateParticles(Color.gray);
+            else if (target.tag == "Pirate") CreateParticles(Color.red);
+            else CreateParticles(Color.gray);
             Destroy(target);
         }
 
@@ -97,11 +108,13 @@ public class Crosshair : MonoBehaviour
         ammo -= 1;
     }
 
-    void CreateParticles()
+    void CreateParticles(Color color)
     {
         particles = Instantiate(_particleRef, mouseCursorPosition, Quaternion.identity);
         particles.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         ps = particles.GetComponent<ParticleSystem>();
+        ParticleSystem.MainModule _main = ps.main;
+        _main.startColor = color;
         ps.Stop();
         RandomizeParticleDuration();
         ps.Play();

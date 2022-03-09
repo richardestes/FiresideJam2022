@@ -1,16 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-public class Battery : MonoBehaviour
+public class Pirate : MonoBehaviour
 {
     private Spaceship spaceship;
     private Rigidbody2D rb;
     private Vector2 screenBounds;
-    
-    [Range(5f,20f)]
-    public float speed = 10f;
-    public int healingPoints = 10;
+    [SerializeField]
+    private ProjectileSpawner projectileSpawner;
+
+    [Range(5f,10f)]
+    public float speed = 5f;
+    [Range(1f, 5f)]
+    public float fireRate = 3f;
+    public int damage = 15;
 
     private void Start()
     {
@@ -18,6 +21,8 @@ public class Battery : MonoBehaviour
         rb.velocity = new Vector2(-speed, 0); // move object to left
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
+        if (!projectileSpawner) projectileSpawner = gameObject.GetComponent<ProjectileSpawner>();
+        projectileSpawner.fireTime = fireRate;
     }
 
     private void Update()
@@ -30,7 +35,7 @@ public class Battery : MonoBehaviour
     {
         if (collision.gameObject.name == "Spaceship")
         {
-            spaceship.Heal(healingPoints);
+            spaceship.TakeDamage(damage);
             Destroy(gameObject);
         }
     }
