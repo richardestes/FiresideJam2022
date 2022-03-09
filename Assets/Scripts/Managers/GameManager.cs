@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager: MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     // Singleton
     public static GameManager instance;
@@ -40,17 +40,23 @@ public class GameManager: MonoBehaviour
             isDead = true;
             finalScore = score.ToString("0");
             LevelManager levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
-            levelManager.FadeToLevel(2);
+            levelManager.FadeToLevel(1);
         }
-        SetupUI();
-        IncreaseScoreByTime();
+        if (!isDead)
+        {
+            UpdateUI();
+            IncreaseScoreByTime();
+        }
     }
-    void SetupUI()
+
+    // Added if statement checks for restarting level. Don't try to update
+    // if they don't exist yet :)
+    void UpdateUI()
     {
-        spaceshipHealthText.text = spaceship.health.ToString();
-        ammoText.text = crosshair.ammo.ToString();
+        if (spaceshipHealthText) spaceshipHealthText.text = spaceship.health.ToString();
+        if (ammoText) ammoText.text = crosshair.ammo.ToString();
         int scoreInt = Mathf.RoundToInt(score);
-        scoreText.text = scoreInt.ToString();
+        if (scoreText) scoreText.text = scoreInt.ToString();
     }
 
     void IncreaseScoreByTime()
@@ -71,10 +77,11 @@ public class GameManager: MonoBehaviour
 
     public void ResetGameStats()
     {
+        spaceship.dead = false;
+        isDead = false;
         spaceship.health = 100;
         crosshair.ammo = 100;
         score = 0;
-        isDead = false;
     }
-    
+
 }

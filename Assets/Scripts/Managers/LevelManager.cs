@@ -31,6 +31,6 @@ public class LevelManager : MonoBehaviour
     public void RestartGame()
     {
         manager.ResetGameStats();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }

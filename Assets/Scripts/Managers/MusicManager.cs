@@ -25,7 +25,6 @@ public class MusicManager : MonoBehaviour
     private void Start()
     {
         if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-
         SetupTitleArtistPairs();
 
         if (manager.isDead)
