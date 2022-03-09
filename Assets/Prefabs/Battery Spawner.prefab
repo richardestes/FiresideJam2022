@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   batteryPrefab: {fileID: 2505754380197557191, guid: b834066a931d25343b5bd4d53971474a, type: 3}
+  manager: {fileID: 0}
   respawnTime: 20
-  spawnDistance: 4
+  spawnDistance: 2

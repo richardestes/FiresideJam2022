@@ -11,6 +11,11 @@ TagManager:
   - ScoreText
   - Asteroid
   - Pirate
+  - MusicManager
+  - Alien
+  - LevelManager
+  - SongTitle
+  - SongArtist
   layers:
   - Default
   - TransparentFX
