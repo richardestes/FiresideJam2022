@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class MusicManager : MonoBehaviour
@@ -24,16 +25,12 @@ public class MusicManager : MonoBehaviour
     private void Start()
     {
         SetupTitleArtistPairs();
-        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        //if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         if (!songTitle) songTitle = GameObject.FindGameObjectWithTag("SongTitle").GetComponent<TMP_Text>();
         if (!songArtist) songArtist = GameObject.FindGameObjectWithTag("SongArtist").GetComponent<TMP_Text>();
 
-        if (manager.isDead)
-        {
-            LoadLeaderboardSong();
-            SetUIText();
-        }
-        else
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentSceneIndex == 0) // Main scene
         {
             isPlayingLeaderboardMusic = false;
             SetupMainSong();
@@ -42,14 +39,19 @@ public class MusicManager : MonoBehaviour
             source.Play();
             print("Now Playing: " + source.clip.name + " by: " + songArtist.text);
         }
+        else // leaderboard scene
+        {
+            LoadLeaderboardSong();
+            SetUIText();
+        }
 
         // Mute sync between scenes
-        source.mute = manager.isMusicMuted;
-        if (manager.isMusicMuted)
-        {
-            songTitle.color = Color.gray;
-            songArtist.color = Color.gray;
-        }
+        //source.mute = manager.isMusicMuted;
+        //if (manager.isMusicMuted)
+        //{
+        //    songTitle.color = Color.gray;
+        //    songArtist.color = Color.gray;
+        //}
     }
 
     private void Update()
@@ -129,7 +131,7 @@ public class MusicManager : MonoBehaviour
             print("Muting song");
             songTitle.color = Color.gray;
             songArtist.color = Color.gray;
-            manager.isMusicMuted = true;
+            //manager.isMusicMuted = true;
         }
         else
         {
@@ -137,7 +139,7 @@ public class MusicManager : MonoBehaviour
             if (isPlayingLeaderboardMusic) songTitle.color = Color.red;
             else songTitle.color = Color.yellow;
             songArtist.color = Color.white;
-            manager.isMusicMuted = true;
+            //manager.isMusicMuted = true;
         }
     }
 

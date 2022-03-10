@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     // Singleton
-    public static GameManager instance;
+    private static GameManager _instance;
+
+    public static GameManager Instance { get { return _instance; } }
 
     public Text ammoText;
     public Text spaceshipHealthText;
@@ -14,6 +17,7 @@ public class GameManager : MonoBehaviour
     [Range(1, 5)]
     public int maxEnemies = 3;
     public bool isDead;
+    public bool reset = false;
     public bool isMusicMuted;
     public string finalScore;
     public Image[] healthPoints;
@@ -26,16 +30,30 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        instance = this;
-        if (!spaceship) spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
-        if (!crosshair) crosshair = GameObject.FindGameObjectWithTag("Crosshair").GetComponent<Crosshair>();
-        if (!scoreText) scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>(); // for leaderboard scene
-        if (healthPoints.Length < 1) LoadHealthBarImages();
+
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentSceneIndex == 0) // Main scene
+        {
+            if (!spaceship) spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
+            if (!crosshair) crosshair = GameObject.FindGameObjectWithTag("Crosshair").GetComponent<Crosshair>();
+            if (healthPoints.Length < 1) LoadHealthBarImages();
+        }
+        else // leaderboard scene
+        {
+            if (!scoreText) scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>(); // for leaderboard scene
+        }
     }
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
 
     private void Update()
@@ -45,12 +63,14 @@ public class GameManager : MonoBehaviour
         {
             isDead = true;
             finalScore = score.ToString("0");
+            score = 0f;
             LevelManager levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
             levelManager.FadeToLevel(1);
         }
         if (!isDead && spaceship)
         {
             UpdateUI();
+            UpdateHealthBar();
             IncreaseScoreByTime();
         }
     }
@@ -59,7 +79,6 @@ public class GameManager : MonoBehaviour
     // if they don't exist yet :)
     void UpdateUI()
     {
-        UpdateHealthBar();
         if (ammoText) ammoText.text = crosshair.ammo.ToString();
         int scoreInt = Mathf.RoundToInt(score);
         if (scoreText) scoreText.text = scoreInt.ToString();
@@ -83,7 +102,9 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseScore(float points)
     {
+        print("Old score: " + score);
         score += points;
+        print("New score: " + score);
     }
 
     public void PrintFinalScore()
@@ -98,6 +119,7 @@ public class GameManager : MonoBehaviour
         spaceship.health = 100;
         crosshair.ammo = 100;
         score = 0;
+        reset = true;
     }
 
     void UpdateHealthBar()

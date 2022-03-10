@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        //if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         if (!scoreText) scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
         if (scoreText) scoreText.text = manager.finalScore; // should only fire on Leaderboard Scene
     }
