@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     public void FadeToLevel(int levelIndex)
     {
         levelToLoad = levelIndex;
+        Cursor.visible = true;
         animator.SetTrigger("FadeOut");
     }
 

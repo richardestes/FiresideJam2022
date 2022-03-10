@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     private Crosshair crosshair;
 
 
-
     private void Start()
     {
         instance = this;

@@ -83,7 +83,13 @@ public class MusicManager : MonoBehaviour
             string songArtistString = GetSongArtistString(songTitle.text);
             songArtist.text = songArtistString;
         }
-        else
+        else if (isPlayingLeaderboardMusic)
+        {
+            songTitle.text = leaderboardSong.name;
+            string songArtistString = GetSongArtistString(songTitle.text);
+            songArtist.text = songArtistString;
+        }
+        else // might be able to get rid of this
         {
             if (source.isPlaying)
             {
@@ -99,9 +105,17 @@ public class MusicManager : MonoBehaviour
         source.Stop();
         print("Switching song...");
         int randomMainIndex = Random.Range(0, mainSongs.Count);
-        mainSong = mainSongs[randomMainIndex];
+        if (isPlayingLeaderboardMusic)
+        {
+            leaderboardSong = leaderboardSongs[randomMainIndex];
+            source.clip = leaderboardSong;
+        }
+        else
+        {
+            mainSong = mainSongs[randomMainIndex];
+            source.clip = mainSong;
+        }
         SetUIText();
-        source.clip = mainSong;
         source.volume = masterSongVolume;
         source.Play();
     }
@@ -149,10 +163,10 @@ public class MusicManager : MonoBehaviour
     {
         List<string> creammamireSongs = new List<string>
             {
-                "Alien Crime Lord", "ALieNNatioN", "At the Door",
+                "Alien Crime Lord", "ALieNNatioN", "At The Door",
                 "Brooklyn Bridge to Chorus", "Chances", "Did My Best",
                 "Drag Queen", "Games", "Happy Ending", "Hawaii", "Human Sadness",
-                "Instant Crush", "Ize of the World", "Juicebox", "Leave It In My Dreams",
+                "Instant Crush", "Ize Of The World", "Juicebox", "Leave It In My Dreams",
                 "Machu Picchu", "Metabolism", "Not The Same Anymore", "One Way Trigger",
                 "One Way Trigger (Mellow)", "River of Brakelights", "Selfless",
                 "The End Has No End", "Taken For A Fool", "The Adults Are Talking", "The Eternal Tao",
