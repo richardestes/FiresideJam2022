@@ -27,7 +27,6 @@ public class SpawnAmmo : MonoBehaviour
         print("Spawning ammo");
         GameObject ammoObj = Instantiate(ammoPrefab);
         Ammo ammo = ammoObj.GetComponent<Ammo>();
-        ammo.speed = Random.Range(0.1f, 1f);
         ammo.transform.position = new Vector2(screenBounds.x * spawnDistance, Random.Range(-screenBounds.y, screenBounds.y));
     }
 
@@ -36,7 +35,7 @@ public class SpawnAmmo : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(respawnTime);
-            respawnTime = Mathf.Clamp(respawnTime + 3f, 1, 360); // increase respawn time for skill curve
+            respawnTime = Mathf.Clamp(respawnTime + 15f, 1, 360); // increase respawn time for skill curve
             SpawnAmmoPowerup();
         }
     }

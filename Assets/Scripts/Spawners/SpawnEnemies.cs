@@ -38,7 +38,20 @@ public class SpawnEnemies : MonoBehaviour
         {
             yield return new WaitForSeconds(respawnTime);
             respawnTime = Mathf.Clamp(respawnTime - 5f, 5, 360); // decrease respawn time
-            if (manager.score > scoreThreshold) SpawnEnemy();
+            int currentEnemyCount = GameObject.FindGameObjectsWithTag("Alien").Length + GameObject.FindGameObjectsWithTag("Pirate").Length;
+
+            // To adjust difficulty curve, increase max number of spawnable enemies every
+            // 1000 points scored
+            if (manager.score > scoreThreshold)
+            {
+                if (currentEnemyCount < manager.maxEnemies)
+                {
+                    scoreThreshold += 150; // adjust difficulty curve
+                    manager.maxEnemies += 1; // adjust difficulty curve
+                    SpawnEnemy();
+                }
+                else print("Max enemies spawned!"); // DEBUG
+            }
         }
     }
 }

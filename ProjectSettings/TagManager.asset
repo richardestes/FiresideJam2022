@@ -16,6 +16,7 @@ TagManager:
   - LevelManager
   - SongTitle
   - SongArtist
+  - HealthPoints
   layers:
   - Default
   - TransparentFX

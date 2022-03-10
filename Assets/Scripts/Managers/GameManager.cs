@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,13 +11,18 @@ public class GameManager : MonoBehaviour
     public Text spaceshipHealthText;
     public Text scoreText;
     public float score = 0;
+    [Range(1, 5)]
+    public int maxEnemies = 3;
     public bool isDead;
+    public bool isMusicMuted;
     public string finalScore;
+    public Image[] healthPoints;
 
     [SerializeField]
     private Spaceship spaceship;
     [SerializeField]
     private Crosshair crosshair;
+
 
 
     private void Start()
@@ -25,6 +31,7 @@ public class GameManager : MonoBehaviour
         if (!spaceship) spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
         if (!crosshair) crosshair = GameObject.FindGameObjectWithTag("Crosshair").GetComponent<Crosshair>();
         if (!scoreText) scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>(); // for leaderboard scene
+        if (healthPoints.Length < 1) LoadHealthBarImages();
     }
 
     private void Awake()
@@ -42,7 +49,7 @@ public class GameManager : MonoBehaviour
             LevelManager levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
             levelManager.FadeToLevel(1);
         }
-        if (!isDead)
+        if (!isDead && spaceship)
         {
             UpdateUI();
             IncreaseScoreByTime();
@@ -53,10 +60,20 @@ public class GameManager : MonoBehaviour
     // if they don't exist yet :)
     void UpdateUI()
     {
-        if (spaceshipHealthText) spaceshipHealthText.text = spaceship.health.ToString();
+        UpdateHealthBar();
         if (ammoText) ammoText.text = crosshair.ammo.ToString();
         int scoreInt = Mathf.RoundToInt(score);
         if (scoreText) scoreText.text = scoreInt.ToString();
+    }
+
+    void LoadHealthBarImages()
+    {
+        GameObject[] healthObjects = GameObject.FindGameObjectsWithTag("HealthPoints");
+        for (int i = 0; i < healthObjects.Length; i++)
+        {
+            Image healthBar = healthObjects[i].GetComponent<Image>();
+            healthPoints[i] = healthBar;
+        }
     }
 
     void IncreaseScoreByTime()
@@ -82,6 +99,24 @@ public class GameManager : MonoBehaviour
         spaceship.health = 100;
         crosshair.ammo = 100;
         score = 0;
+    }
+
+    void UpdateHealthBar()
+    {
+        // Check to see if spaceship has been instantiated yet.
+        // If we don't check, we get a MissingReferenceException
+        // from UpdateUI() on every new run.
+        if (!spaceship) return;
+
+        for (int i = 0; i < healthPoints.Length; i++)
+        {
+            healthPoints[i].enabled = !DisplayHealthPoint(spaceship.health, i);
+        }
+    }
+
+    bool DisplayHealthPoint(float health, int pointNumber)
+    {
+        return ((pointNumber * 10) >= health);
     }
 
 }

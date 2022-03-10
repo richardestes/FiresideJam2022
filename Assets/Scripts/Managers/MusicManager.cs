@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class MusicManager : MonoBehaviour
 {
@@ -24,8 +23,10 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
-        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         SetupTitleArtistPairs();
+        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        if (!songTitle) songTitle = GameObject.FindGameObjectWithTag("SongTitle").GetComponent<TMP_Text>();
+        if (!songArtist) songArtist = GameObject.FindGameObjectWithTag("SongArtist").GetComponent<TMP_Text>();
 
         if (manager.isDead)
         {
@@ -40,6 +41,14 @@ public class MusicManager : MonoBehaviour
             songArtist.color = Color.white;
             source.Play();
             print("Now Playing: " + source.clip.name + " by: " + songArtist.text);
+        }
+
+        // Mute sync between scenes
+        source.mute = manager.isMusicMuted;
+        if (manager.isMusicMuted)
+        {
+            songTitle.color = Color.gray;
+            songArtist.color = Color.gray;
         }
     }
 
@@ -58,7 +67,6 @@ public class MusicManager : MonoBehaviour
     {
         int randomMainIndex = Random.Range(0, mainSongs.Count);
         mainSong = mainSongs[randomMainIndex];
-        //mainSongs.RemoveAt(randomMainIndex);
         source = GetComponent<AudioSource>();
         source.clip = mainSong;
         source.volume = masterSongVolume;
@@ -67,12 +75,22 @@ public class MusicManager : MonoBehaviour
 
     void SetUIText()
     {
+        // If we don't check, sometimes the UI will not properly update
         if (!songTitle || !songArtist) return;
         if (!isPlayingLeaderboardMusic)
         {
             songTitle.text = mainSong.name;
             string songArtistString = GetSongArtistString(songTitle.text);
             songArtist.text = songArtistString;
+        }
+        else
+        {
+            if (source.isPlaying)
+            {
+                string artist = GetSongArtistString(source.clip.name);
+                songTitle.text = source.clip.name;
+                songArtist.text = artist;
+            }
         }
     }
 
@@ -82,7 +100,6 @@ public class MusicManager : MonoBehaviour
         print("Switching song...");
         int randomMainIndex = Random.Range(0, mainSongs.Count);
         mainSong = mainSongs[randomMainIndex];
-        //mainSongs.RemoveAt(randomMainIndex);
         SetUIText();
         source.clip = mainSong;
         source.volume = masterSongVolume;
@@ -93,17 +110,20 @@ public class MusicManager : MonoBehaviour
     {
         muted = !source.mute;
         source.mute = !source.mute;
-        if (muted && !isPlayingLeaderboardMusic)
+        if (muted)
         {
             print("Muting song");
             songTitle.color = Color.gray;
             songArtist.color = Color.gray;
+            manager.isMusicMuted = true;
         }
         else
         {
             print("Unmuting song");
-            songTitle.color = Color.yellow;
+            if (isPlayingLeaderboardMusic) songTitle.color = Color.red;
+            else songTitle.color = Color.yellow;
             songArtist.color = Color.white;
+            manager.isMusicMuted = true;
         }
     }
 
@@ -123,6 +143,7 @@ public class MusicManager : MonoBehaviour
             print("Now Playing: " + songName + " by: " + songArtist);
         }
     }
+
 
     void SetupTitleArtistPairs()
     {

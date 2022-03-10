@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf5a7c58a4946542a02e435c099b834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   ammoAmount: 25
 --- !u!50 &7246949408556902929
 Rigidbody2D:

@@ -9,8 +9,8 @@ public class Ammo : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 screenBounds;
 
-    [Range(10f, 40f)]
-    public float speed = 10f;
+    [Range(1f, 5f)]
+    public float speed;
     public int ammoAmount = 25;
 
     private void Start()
@@ -20,6 +20,7 @@ public class Ammo : MonoBehaviour
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
         crosshair = GameObject.FindGameObjectWithTag("Crosshair").GetComponent<Crosshair>();
+        speed *= 1000f;
     }
 
     private void Update()

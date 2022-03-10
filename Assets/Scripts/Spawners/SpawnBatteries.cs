@@ -28,7 +28,6 @@ public class SpawnBatteries : MonoBehaviour
         print("Spawning battery");
         GameObject batteryObj = Instantiate(batteryPrefab);
         Battery battery = batteryObj.GetComponent<Battery>();
-        battery.speed = Random.Range(0.1f, 1f);
         battery.transform.position = new Vector2(screenBounds.x * spawnDistance, Random.Range(-screenBounds.y, screenBounds.y));
     }
 
@@ -37,7 +36,7 @@ public class SpawnBatteries : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(respawnTime);
-            respawnTime = Mathf.Clamp(respawnTime + 3f, 1, 360); // increase respawn time for skill curve
+            respawnTime = Mathf.Clamp(respawnTime + 15f, 1, 360); // increase respawn time for skill curve
             SpawnBattery();
         }
     }
