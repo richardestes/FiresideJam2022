@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    private GameManager manager;
     private int levelToLoad;
 
     public Text scoreText;
@@ -12,9 +11,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         if (!scoreText) scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
-        if (scoreText) scoreText.text = manager.finalScore; // should only fire on Leaderboard Scene
+        if (scoreText) scoreText.text = GameManager.GetInstance().finalScore; // should only fire on Leaderboard Scene
     }
 
     public void FadeToLevel(int levelIndex)
@@ -31,7 +29,7 @@ public class LevelManager : MonoBehaviour
 
     public void RestartGame()
     {
-        manager.ResetGameStats();
+        GameManager.GetInstance().ResetGameStats();
         SceneManager.LoadScene(0);
     }
 }

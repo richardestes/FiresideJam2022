@@ -1,14 +1,13 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     // Singleton
-    public static GameManager instance;
+    static GameManager _instance;
 
     public Text ammoText;
-    public Text spaceshipHealthText;
     public Text scoreText;
     public float score = 0;
     [Range(1, 5)]
@@ -26,64 +25,103 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        instance = this;
-        if (!spaceship) spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
-        if (!crosshair) crosshair = GameObject.FindGameObjectWithTag("Crosshair").GetComponent<Crosshair>();
-        if (!scoreText) scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>(); // for leaderboard scene
-        if (healthPoints.Length < 1) LoadHealthBarImages();
-    }
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
+        if (!GetInstance().spaceship) GetInstance().spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
+        if (!GetInstance().crosshair) GetInstance().crosshair = GameObject.FindGameObjectWithTag("Crosshair").GetComponent<Crosshair>();
+        if (!GetInstance().scoreText) GetInstance().scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>(); // for leaderboard scene
+        if (!GetInstance().ammoText) GetInstance().ammoText = GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>();
+        GetInstance().LoadHealthBarImages();
     }
 
     private void Update()
     {
-        if (isDead) return;
+        if (GetInstance().isDead) return;
         if (spaceship.dead)
         {
-            isDead = true;
-            finalScore = score.ToString("0");
+            GetInstance().isDead = true;
+            GetInstance().finalScore = GetInstance().score.ToString("0");
             LevelManager levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
             levelManager.FadeToLevel(1);
         }
-        if (!isDead && spaceship)
+        GetInstance().UpdateUI();
+        GetInstance().IncreaseScoreByTime();
+    }
+
+    // Singleton Shit
+    public static GameManager GetInstance()
+    {
+        if (_instance == null)
         {
-            UpdateUI();
-            IncreaseScoreByTime();
+            _instance = new GameObject("GameManger").AddComponent<GameManager>();
+            DontDestroyOnLoad(_instance.gameObject);
         }
+        return _instance;
+    }
+
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+            if (!GetInstance().scoreText) GetInstance().scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>(); // for leaderboard scene
+            if (!GetInstance().ammoText) GetInstance().ammoText = GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>();
+            if (!GetInstance().spaceship) GetInstance().spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
+            if (!GetInstance().crosshair) GetInstance().crosshair = GameObject.FindGameObjectWithTag("Crosshair").GetComponent<Crosshair>();
+            GetInstance().LoadHealthBarImages();
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+            if (!GetInstance().scoreText) GetInstance().scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>(); // for leaderboard scene
+            if (!GetInstance().ammoText) GetInstance().ammoText = GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>();
+            if (!GetInstance().spaceship) GetInstance().spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
+            if (!GetInstance().crosshair) GetInstance().crosshair = GameObject.FindGameObjectWithTag("Crosshair").GetComponent<Crosshair>();
+            GetInstance().LoadHealthBarImages();
+        }
+    }
+
+    void SetupInstanceReferences()
+    {
+        if (!GetInstance().scoreText) GetInstance().scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>(); // for leaderboard scene
+        if (!GetInstance().ammoText) GetInstance().ammoText = GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>();
+        if (!GetInstance().spaceship) GetInstance().spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
+        if (!GetInstance().crosshair) GetInstance().crosshair = GameObject.FindGameObjectWithTag("Crosshair").GetComponent<Crosshair>();
+        GetInstance().LoadHealthBarImages();
     }
 
     // Added if statement checks for restarting level. Don't try to update
     // if they don't exist yet :)
     void UpdateUI()
     {
-        UpdateHealthBar();
-        if (ammoText) ammoText.text = crosshair.ammo.ToString();
-        int scoreInt = Mathf.RoundToInt(score);
-        if (scoreText) scoreText.text = scoreInt.ToString();
+        if (SceneManager.GetActiveScene().buildIndex == 1) return; // don't run on leaderboard scene
+        GetInstance().UpdateHealthBar();
+        if (!GetInstance().ammoText) GetInstance().ammoText = GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>();
+        if (!GetInstance().scoreText) GetInstance().scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
+        if (GetInstance().ammoText) GetInstance().ammoText.text = GetInstance().crosshair.ammo.ToString();
+        int scoreInt = Mathf.RoundToInt(GetInstance().score);
+        if (GetInstance().scoreText) GetInstance().scoreText.text = scoreInt.ToString();
     }
 
     void LoadHealthBarImages()
     {
+        healthPoints = new Image[10];
         GameObject[] healthObjects = GameObject.FindGameObjectsWithTag("HealthPoints");
         for (int i = 0; i < healthObjects.Length; i++)
         {
             Image healthBar = healthObjects[i].GetComponent<Image>();
-            healthPoints[i] = healthBar;
+            GetInstance().healthPoints[i] = healthBar;
         }
     }
 
     void IncreaseScoreByTime()
     {
         float pointIncrease = 1f;
-        score += pointIncrease * Time.deltaTime;
+        GetInstance().score += pointIncrease * Time.deltaTime;
     }
 
     public void IncreaseScore(float points)
     {
-        score += points;
+        GetInstance().score += points;
     }
 
     public void PrintFinalScore()
@@ -93,11 +131,15 @@ public class GameManager : MonoBehaviour
 
     public void ResetGameStats()
     {
-        spaceship.dead = false;
-        isDead = false;
-        spaceship.health = 100;
-        crosshair.ammo = 100;
-        score = 0;
+        print("Resetting game stats");
+        GetInstance().spaceship.dead = false;
+        GetInstance().isDead = false;
+        GetInstance().spaceship.health = 100;
+        GetInstance().crosshair.ammo = 100;
+        GetInstance().finalScore = "0";
+        GetInstance().score = 0f;
+        GetInstance().LoadHealthBarImages();
+        GetInstance().UpdateUI();
     }
 
     void UpdateHealthBar()
@@ -105,11 +147,11 @@ public class GameManager : MonoBehaviour
         // Check to see if spaceship has been instantiated yet.
         // If we don't check, we get a MissingReferenceException
         // from UpdateUI() on every new run.
-        if (!spaceship) return;
+        if (!GetInstance().spaceship) return;
 
-        for (int i = 0; i < healthPoints.Length; i++)
+        for (int i = 0; i < GetInstance().healthPoints.Length; i++)
         {
-            healthPoints[i].enabled = !DisplayHealthPoint(spaceship.health, i);
+            GetInstance().healthPoints[i].enabled = !DisplayHealthPoint(GetInstance().spaceship.health, i);
         }
     }
 

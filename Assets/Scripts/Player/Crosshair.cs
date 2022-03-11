@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Crosshair : MonoBehaviour
@@ -8,7 +6,6 @@ public class Crosshair : MonoBehaviour
     private CircleCollider2D col;
     private GameObject target;
     private Shake shake;
-    private GameManager manager;
     private bool enemy;
     private Spaceship spaceship;
     private Vector2 mouseCursorPosition;
@@ -27,7 +24,6 @@ public class Crosshair : MonoBehaviour
     private void Start()
     {
         if (!shake) shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
-        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         if (!spaceship) spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
         _particleRef = particles;  // DO NOT DELETE
     }
@@ -83,23 +79,29 @@ public class Crosshair : MonoBehaviour
     {
         if (enemy)
         {
-            float points = 0f;
-            if (target.tag == "Asteroid")
+            print(target.tag);
+            if (target.CompareTag("Asteroid"))
             {
+                print("Increasing points");
                 Asteroid asteroid = target.GetComponent<Asteroid>();
-                points = asteroid.damage;
+                float points = asteroid.damage;
+                print("Points: " + points);
+                GameManager.GetInstance().IncreaseScore(points);
             }
-            else if (target.tag == "Alien")
+            else if (target.CompareTag("Alien"))
             {
                 Enemy enemy = target.GetComponent<Enemy>();
-                points = enemy.damage + 25f;
+                float points = enemy.damage + 25f;
+                print("Points: " + points);
+                GameManager.GetInstance().IncreaseScore(points);
             }
-            else if (target.tag == "Pirate")
+            else if (target.CompareTag("Pirate"))
             {
                 Enemy enemy = target.GetComponent<Enemy>();
-                points = enemy.damage + 50f;
+                float points = enemy.damage + 50f;
+                print("Points: " + points);
+                GameManager.GetInstance().IncreaseScore(points);
             }
-            manager.IncreaseScore(points);
         }
 
         if (target)
@@ -134,7 +136,7 @@ public class Crosshair : MonoBehaviour
         main.duration = Random.Range(0.25f, 0.5f);
     }
 
-    public void Reload (int ammoAmount)
+    public void Reload(int ammoAmount)
     {
         ammo += ammoAmount;
     }

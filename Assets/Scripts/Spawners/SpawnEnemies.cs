@@ -18,7 +18,6 @@ public class SpawnEnemies : MonoBehaviour
     private void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         StartCoroutine(EnemyWave());
     }
 
@@ -42,12 +41,12 @@ public class SpawnEnemies : MonoBehaviour
 
             // To adjust difficulty curve, increase max number of spawnable enemies every
             // 1000 points scored
-            if (manager.score > scoreThreshold)
+            if (GameManager.GetInstance().score > scoreThreshold)
             {
-                if (currentEnemyCount < manager.maxEnemies)
+                if (currentEnemyCount < GameManager.GetInstance().maxEnemies)
                 {
                     scoreThreshold += 150; // adjust difficulty curve
-                    manager.maxEnemies += 1; // adjust difficulty curve
+                    GameManager.GetInstance().maxEnemies += 1; // adjust difficulty curve
                     SpawnEnemy();
                 }
                 else print("Max enemies spawned!"); // DEBUG
