@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spaceship : MonoBehaviour
@@ -41,6 +39,7 @@ public class Spaceship : MonoBehaviour
     {
         shake.CamShake();
         health = Mathf.Clamp(health - damage, 0, 100);
+        GameManager.GetInstance().UpdateUI();
     }
 
     public void Heal(int healthAmount)

@@ -5,7 +5,6 @@ using TMPro;
 
 public class MusicManager : MonoBehaviour
 {
-    private GameManager manager;
     private AudioSource source;
     private AudioClip mainSong, leaderboardSong;
     private bool songDone;

@@ -25,7 +25,7 @@ public class SpawnBatteries : MonoBehaviour
 
     void SpawnBattery()
     {
-        print("Spawning battery");
+        //print("Spawning battery"); // DEBUG
         GameObject batteryObj = Instantiate(batteryPrefab);
         Battery battery = batteryObj.GetComponent<Battery>();
         battery.transform.position = new Vector2(screenBounds.x * spawnDistance, Random.Range(-screenBounds.y, screenBounds.y));

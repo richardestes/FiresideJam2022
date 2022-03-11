@@ -18,6 +18,7 @@ TagManager:
   - SongArtist
   - HealthPoints
   - AmmoText
+  - HealthBar
   layers:
   - Default
   - TransparentFX

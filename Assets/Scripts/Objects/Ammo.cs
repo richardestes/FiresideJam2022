@@ -20,6 +20,7 @@ public class Ammo : MonoBehaviour
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
         crosshair = GameObject.FindGameObjectWithTag("Crosshair").GetComponent<Crosshair>();
+        if (!crosshair) crosshair = GameManager.GetInstance().crosshair;
         speed *= 1000f;
     }
 

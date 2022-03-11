@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Spaceship spaceship;
     [SerializeField]
-    private Crosshair crosshair;
+    public Crosshair crosshair;
 
 
     private void Start()
@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
             LevelManager levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
             levelManager.FadeToLevel(1);
         }
-        GetInstance().UpdateUI();
         GetInstance().IncreaseScoreByTime();
     }
 
@@ -61,6 +60,7 @@ public class GameManager : MonoBehaviour
     {
         if (_instance == null)
         {
+            Debug.Log("Game Manager instance created.");
             _instance = this;
             DontDestroyOnLoad(gameObject);
             if (!GetInstance().scoreText) GetInstance().scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>(); // for leaderboard scene
@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
         }
         else if (_instance != this)
         {
+            Debug.Log("Game Manager instance deleting duplicate.");
             Destroy(gameObject);
             if (!GetInstance().scoreText) GetInstance().scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>(); // for leaderboard scene
             if (!GetInstance().ammoText) GetInstance().ammoText = GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>();
@@ -80,18 +81,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void SetupInstanceReferences()
-    {
-        if (!GetInstance().scoreText) GetInstance().scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>(); // for leaderboard scene
-        if (!GetInstance().ammoText) GetInstance().ammoText = GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>();
-        if (!GetInstance().spaceship) GetInstance().spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
-        if (!GetInstance().crosshair) GetInstance().crosshair = GameObject.FindGameObjectWithTag("Crosshair").GetComponent<Crosshair>();
-        GetInstance().LoadHealthBarImages();
-    }
-
     // Added if statement checks for restarting level. Don't try to update
     // if they don't exist yet :)
-    void UpdateUI()
+    public void UpdateUI()
     {
         if (SceneManager.GetActiveScene().buildIndex == 1) return; // don't run on leaderboard scene
         GetInstance().UpdateHealthBar();
@@ -104,12 +96,27 @@ public class GameManager : MonoBehaviour
 
     void LoadHealthBarImages()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 1) return;
         healthPoints = new Image[10];
-        GameObject[] healthObjects = GameObject.FindGameObjectsWithTag("HealthPoints");
-        for (int i = 0; i < healthObjects.Length; i++)
+        var healthBarObj = GameObject.FindGameObjectWithTag("HealthBar");
+        for (int i = 0; i < healthBarObj.transform.childCount; i++)
         {
-            Image healthBar = healthObjects[i].GetComponent<Image>();
+            Transform child = healthBarObj.transform.GetChild(i);
+            Image healthBar = child.gameObject.GetComponent<Image>();
             GetInstance().healthPoints[i] = healthBar;
+
+            // On builds, Unity doesn't like to load these in the correct order, 
+            // so we manually set their colors
+            if (i < 2)
+                healthBar.color = new Color(1f, 0f, 0f, 1f); // red
+            else if (i >= 2 && i < 4)
+                healthBar.color = new Color(1f, 0.41f, 0f, 1f); // orange
+            else if (i <= 4 && i < 6)
+                healthBar.color = new Color(0.925f, 0.864f, 0f, 1f); // yellow
+            else
+                healthBar.color = new Color(0.004f, 0.991f, 0f, 1f); // green
+
+            // Debug.Log("Health Bar element " + i + " color: " + healthBar.color); // DEBUG
         }
     }
 
@@ -117,6 +124,7 @@ public class GameManager : MonoBehaviour
     {
         float pointIncrease = 1f;
         GetInstance().score += pointIncrease * Time.deltaTime;
+        GetInstance().UpdateUI();
     }
 
     public void IncreaseScore(float points)
@@ -151,7 +159,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < GetInstance().healthPoints.Length; i++)
         {
-            GetInstance().healthPoints[i].enabled = !DisplayHealthPoint(GetInstance().spaceship.health, i);
+            GetInstance().healthPoints[i].enabled = !GetInstance().DisplayHealthPoint(GetInstance().spaceship.health, i);
         }
     }
 

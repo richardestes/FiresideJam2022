@@ -18,13 +18,12 @@ public class SpawnAmmo : MonoBehaviour
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        //if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         StartCoroutine(AmmoWave());
     }
 
     void SpawnAmmoPowerup()
     {
-        print("Spawning ammo");
+        //print("Spawning ammo"); // DEBUG
         GameObject ammoObj = Instantiate(ammoPrefab);
         Ammo ammo = ammoObj.GetComponent<Ammo>();
         ammo.transform.position = new Vector2(screenBounds.x * spawnDistance, Random.Range(-screenBounds.y, screenBounds.y));

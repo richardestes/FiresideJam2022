@@ -23,7 +23,7 @@ public class SpawnEnemies : MonoBehaviour
 
     void SpawnEnemy()
     {
-        print("Spawning pirate");
+        //print("Spawning pirate"); // DEBUG
         GameObject pirateObj = Instantiate(enemyPrefab);
         Enemy enemy = pirateObj.GetComponent<Enemy>();
         enemy.speed = Random.Range(0.1f, 1f);
