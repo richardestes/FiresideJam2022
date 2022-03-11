@@ -9,15 +9,12 @@ public class LeaderboardController : MonoBehaviour
     public InputField memberID, playerScore;
     public int leaderboardID;
     public int actualScore;
-    private GameManager manager;
 
     public int maxScores = 5;
     public Text[] onlineScores;
 
     private void Start()
     {
-        if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-
         LootLockerSDKManager.StartGuestSession((response) =>
         {
             if (response.statusCode == 200)
@@ -32,7 +29,7 @@ public class LeaderboardController : MonoBehaviour
                 print(response.Error);
             }
         });
-        actualScore = int.Parse(manager.finalScore);
+        actualScore = int.Parse(GameManager.GetInstance().finalScore);
     }
 
     public void ShowScores()

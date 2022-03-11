@@ -25,7 +25,6 @@ public class MusicManager : MonoBehaviour
     private void Start()
     {
         SetupTitleArtistPairs();
-        //if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         if (!songTitle) songTitle = GameObject.FindGameObjectWithTag("SongTitle").GetComponent<TMP_Text>();
         if (!songArtist) songArtist = GameObject.FindGameObjectWithTag("SongArtist").GetComponent<TMP_Text>();
 
@@ -45,13 +44,13 @@ public class MusicManager : MonoBehaviour
             SetUIText();
         }
 
-        // Mute sync between scenes
-        //source.mute = manager.isMusicMuted;
-        //if (manager.isMusicMuted)
-        //{
-        //    songTitle.color = Color.gray;
-        //    songArtist.color = Color.gray;
-        //}
+        //Mute sync between scenes
+        source.mute = GameManager.GetInstance().isMusicMuted;
+        if (GameManager.GetInstance().isMusicMuted)
+        {
+            songTitle.color = Color.gray;
+            songArtist.color = Color.gray;
+        }
     }
 
     private void Update()
@@ -131,7 +130,7 @@ public class MusicManager : MonoBehaviour
             print("Muting song");
             songTitle.color = Color.gray;
             songArtist.color = Color.gray;
-            //manager.isMusicMuted = true;
+            GameManager.GetInstance().isMusicMuted = true;
         }
         else
         {
@@ -139,7 +138,7 @@ public class MusicManager : MonoBehaviour
             if (isPlayingLeaderboardMusic) songTitle.color = Color.red;
             else songTitle.color = Color.yellow;
             songArtist.color = Color.white;
-            //manager.isMusicMuted = true;
+            GameManager.GetInstance().isMusicMuted = true;
         }
     }
 
@@ -168,7 +167,7 @@ public class MusicManager : MonoBehaviour
                 "Alien Crime Lord", "ALieNNatioN", "At The Door",
                 "Brooklyn Bridge to Chorus", "Chances", "Did My Best",
                 "Drag Queen", "Games", "Happy Ending", "Hawaii", "Human Sadness",
-                "Instant Crush", "Ize Of The World", "Juicebox", "Leave It In My Dreams",
+                "Instant Crush", "Ize of the World", "Juicebox", "Leave It In My Dreams",
                 "Machu Picchu", "Metabolism", "Not The Same Anymore", "One Way Trigger",
                 "One Way Trigger (Mellow)", "River of Brakelights", "Selfless",
                 "The End Has No End", "Taken For A Fool", "The Adults Are Talking", "The Eternal Tao",

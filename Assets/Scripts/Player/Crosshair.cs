@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Crosshair : MonoBehaviour
@@ -8,7 +6,6 @@ public class Crosshair : MonoBehaviour
     private CircleCollider2D col;
     private GameObject target;
     private Shake shake;
-    private GameManager manager;
     private bool enemy;
     private Spaceship spaceship;
     private Vector2 mouseCursorPosition;
@@ -27,7 +24,6 @@ public class Crosshair : MonoBehaviour
     private void Start()
     {
         if (!shake) shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<Shake>();
-        //if (!manager) manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         if (!spaceship) spaceship = GameObject.FindGameObjectWithTag("Spaceship").GetComponent<Spaceship>();
         _particleRef = particles;  // DO NOT DELETE
     }
@@ -90,21 +86,21 @@ public class Crosshair : MonoBehaviour
                 Asteroid asteroid = target.GetComponent<Asteroid>();
                 float points = asteroid.damage;
                 print("Points: " + points);
-                manager.IncreaseScore(points);
+                GameManager.GetInstance().IncreaseScore(points);
             }
             else if (target.CompareTag("Alien"))
             {
                 Enemy enemy = target.GetComponent<Enemy>();
                 float points = enemy.damage + 25f;
                 print("Points: " + points);
-                manager.IncreaseScore(points);
+                GameManager.GetInstance().IncreaseScore(points);
             }
             else if (target.CompareTag("Pirate"))
             {
                 Enemy enemy = target.GetComponent<Enemy>();
                 float points = enemy.damage + 50f;
                 print("Points: " + points);
-                manager.IncreaseScore(points);
+                GameManager.GetInstance().IncreaseScore(points);
             }
         }
 
