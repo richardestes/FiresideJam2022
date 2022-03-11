@@ -1542,7 +1542,7 @@ PrefabInstance:
       objectReference: {fileID: 6670266637530091312}
     - target: {fileID: 1930833807997228113, guid: 05abb8d2b193d0a49af8152048e78e8b, type: 3}
       propertyPath: respawnTime
-      value: 60
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1930833807997228113, guid: 05abb8d2b193d0a49af8152048e78e8b, type: 3}
       propertyPath: spawnDistance
@@ -1710,6 +1710,10 @@ PrefabInstance:
       propertyPath: manager
       value: 
       objectReference: {fileID: 6670266637530091312}
+    - target: {fileID: 3342642008439305219, guid: 4790c6b663524284ab428a1ce4dec1ba, type: 3}
+      propertyPath: respawnTime
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3794493983343824148, guid: 4790c6b663524284ab428a1ce4dec1ba, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1881,8 +1885,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5148576805543232393, guid: d7f804c07ba4ba94a865726075575231, type: 3}
+      propertyPath: respawnTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148576805543232393, guid: d7f804c07ba4ba94a865726075575231, type: 3}
       propertyPath: planetSprites.Array.size
-      value: 15
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5148576805543232393, guid: d7f804c07ba4ba94a865726075575231, type: 3}
       propertyPath: planetSprites.Array.data[5]
@@ -1895,31 +1903,31 @@ PrefabInstance:
     - target: {fileID: 5148576805543232393, guid: d7f804c07ba4ba94a865726075575231, type: 3}
       propertyPath: planetSprites.Array.data[7]
       value: 
-      objectReference: {fileID: 21300000, guid: 93a9f7cb31888ce469b3209b88d14828, type: 3}
+      objectReference: {fileID: 21300000, guid: 7b03c719e40cd1d4c9e2f0ff49faf755, type: 3}
     - target: {fileID: 5148576805543232393, guid: d7f804c07ba4ba94a865726075575231, type: 3}
       propertyPath: planetSprites.Array.data[8]
       value: 
-      objectReference: {fileID: 21300000, guid: a6fd48c311550894bb9739ab21ea1a94, type: 3}
+      objectReference: {fileID: 21300000, guid: 7b03c719e40cd1d4c9e2f0ff49faf755, type: 3}
     - target: {fileID: 5148576805543232393, guid: d7f804c07ba4ba94a865726075575231, type: 3}
       propertyPath: planetSprites.Array.data[9]
       value: 
-      objectReference: {fileID: 21300000, guid: 4ccf68cd2db6c9142b452cadc221081c, type: 3}
+      objectReference: {fileID: 21300000, guid: 7b03c719e40cd1d4c9e2f0ff49faf755, type: 3}
     - target: {fileID: 5148576805543232393, guid: d7f804c07ba4ba94a865726075575231, type: 3}
       propertyPath: planetSprites.Array.data[10]
       value: 
-      objectReference: {fileID: 21300000, guid: 15c2420796cc0a64abf6e29a831d7873, type: 3}
+      objectReference: {fileID: 21300000, guid: 7b03c719e40cd1d4c9e2f0ff49faf755, type: 3}
     - target: {fileID: 5148576805543232393, guid: d7f804c07ba4ba94a865726075575231, type: 3}
       propertyPath: planetSprites.Array.data[11]
       value: 
-      objectReference: {fileID: 21300000, guid: de36301ed493c98498952f153a2f2ae5, type: 3}
+      objectReference: {fileID: 21300000, guid: 7b03c719e40cd1d4c9e2f0ff49faf755, type: 3}
     - target: {fileID: 5148576805543232393, guid: d7f804c07ba4ba94a865726075575231, type: 3}
       propertyPath: planetSprites.Array.data[12]
       value: 
-      objectReference: {fileID: 21300000, guid: 669a93bff456beb4b8ca0980a1b1102d, type: 3}
+      objectReference: {fileID: 21300000, guid: 7b03c719e40cd1d4c9e2f0ff49faf755, type: 3}
     - target: {fileID: 5148576805543232393, guid: d7f804c07ba4ba94a865726075575231, type: 3}
       propertyPath: planetSprites.Array.data[13]
       value: 
-      objectReference: {fileID: 21300000, guid: 6a2418b917bff6c42a48ed7455d6d671, type: 3}
+      objectReference: {fileID: 21300000, guid: 7b03c719e40cd1d4c9e2f0ff49faf755, type: 3}
     - target: {fileID: 5148576805543232393, guid: d7f804c07ba4ba94a865726075575231, type: 3}
       propertyPath: planetSprites.Array.data[14]
       value: 

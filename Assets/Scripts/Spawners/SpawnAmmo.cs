@@ -34,7 +34,7 @@ public class SpawnAmmo : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(respawnTime);
-            respawnTime = Mathf.Clamp(respawnTime + 15f, 1, 360); // increase respawn time for skill curve
+            respawnTime = Mathf.Clamp(respawnTime + 2f, 1, 360); // increase respawn time for skill curve
             SpawnAmmoPowerup();
         }
     }

@@ -64,7 +64,8 @@ public class LeaderboardController : MonoBehaviour
 
     public void SubmitScore()
     {
-        LootLockerSDKManager.SubmitScore(memberID.text, actualScore, leaderboardID, (response) =>
+        string cleanedText = memberID.text.Trim();
+        LootLockerSDKManager.SubmitScore(cleanedText, actualScore, leaderboardID, (response) =>
         {
             if (response.statusCode == 200)
             {

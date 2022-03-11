@@ -12,6 +12,7 @@ public class Crosshair : MonoBehaviour
     private ParticleSystem _particleRef;
     private ParticleSystem ps;
 
+    public Sprite normalSprite;
     public Sprite emptySprite;
     public ParticleSystem particles;
     public int ammo = 100;
@@ -19,6 +20,7 @@ public class Crosshair : MonoBehaviour
     private void Awake()
     {
         Cursor.visible = false; // hide default cursor
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Start()
@@ -139,5 +141,6 @@ public class Crosshair : MonoBehaviour
     public void Reload(int ammoAmount)
     {
         ammo += ammoAmount;
+        if (ammo > 0) GetComponent<SpriteRenderer>().sprite = normalSprite;
     }
 }
